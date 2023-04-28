@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 
 
@@ -10,13 +9,13 @@ def register_user(request):
     return render(request, 'account/register-page.html')
 
 
-def delete_page(request):
+def delete_page(request, pk):
     return render(request, 'account/profile-delete-page.html')
 
 
-def details_page(request):
+def details_page(request, pk):
     return render(request, 'account/profile-details-page.html')
 
 
-def edit_page(request):
+def edit_page(request, pk):
     return render(request, 'account/profile-edit-page.html')
