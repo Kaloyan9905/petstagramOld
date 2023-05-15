@@ -1,15 +1,18 @@
 from django.core.validators import MinLengthValidator
 from django.db import models
 
+from petstagram.pets.models import Pet
+
 
 class Photo(models.Model):
     DESC_MAX_LEN = 300
+    DESC_MIN_LEN = 10
     LOCATION_MAX_LEN = 30
-    LOCATION_MIN_LEN = 10
 
     photo = models.ImageField(
         null=False,
         blank=True,
+        upload_to='mediafiles/pet-photos',
     )
 
     description = models.TextField(
@@ -17,7 +20,7 @@ class Photo(models.Model):
         blank=True,
         max_length=DESC_MAX_LEN,
         validators=[
-            MinLengthValidator(LOCATION_MIN_LEN)
+            MinLengthValidator(DESC_MIN_LEN)
         ],
     )
 
@@ -32,3 +35,11 @@ class Photo(models.Model):
         blank=False,
         auto_now=True,
     )
+
+    tagged_pets = models.ManyToManyField(
+        Pet,
+        blank=True,
+    )
+
+
+
