@@ -2,6 +2,7 @@ from django.core.validators import MinLengthValidator
 from django.db import models
 
 from petstagram.pets.models import Pet
+from petstagram.photos.validators import validate_file_size
 
 
 class Photo(models.Model):
@@ -13,6 +14,9 @@ class Photo(models.Model):
         null=False,
         blank=True,
         upload_to='mediafiles/pet-photos',
+        validators=[
+            validate_file_size,
+        ],
     )
 
     description = models.TextField(
@@ -40,6 +44,3 @@ class Photo(models.Model):
         Pet,
         blank=True,
     )
-
-
-
