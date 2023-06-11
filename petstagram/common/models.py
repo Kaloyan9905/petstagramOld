@@ -24,4 +24,7 @@ class Like(models.Model):
     to_photo = models.ForeignKey(
         Photo,
         on_delete=models.CASCADE,
+        null=False,
+        blank=True,
     )
+
